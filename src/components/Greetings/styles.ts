@@ -22,15 +22,16 @@ export const Text = styled.p`
 export const GridContainer = styled.div`
     display: grid;
     grid-template-columns: 245px auto 30%;
-    min-height: 100px;
+    min-height: 100vh;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
       grid-template-columns: 245px auto;
     }
 
     @media (max-width: 800px) {
-      grid-template-columns: auto;
+      grid-template-columns:auto;
     }
+
 ` 
 
 export const PreviousResContainer = styled.div`
@@ -39,17 +40,63 @@ export const PreviousResContainer = styled.div`
     @media (max-width: 800px) {
       display: none;
     }
+    
 `
 
 export const ParseContainer = styled.div`
-    background-color: red;
+    
 
 `
 
 export const PreviewContainer = styled.div`
     background-color: orange;
 
-    @media (max-width: 1000px) {
+    @media (max-width: 1200px) {
+      display: none;
+    }
+
+    @media (max-width: 800px) {
+      display: none;
+    }
+`
+
+export const NavBarButtons = styled.button`
+    padding: 0;
+    outline: none;
+    border: none; 
+    background: none;
+    margin-left: 45px;
+    :focus {
+      outline:none;
+    }
+`
+
+export const PreviewButton = styled.button`
+    padding: 0;
+    outline: none;
+    border: none; 
+    background: none;
+
+    :focus {
+      outline:none;
+    }
+
+    @media (min-width: 800px) {
+      display: none;
+    }
+`
+
+export const BigPreviewButton = styled.button`
+    padding: 0;
+    outline: none;
+    border: none; 
+    background: none;
+
+    :focus {
+      outline:none;
+    }
+
+    @media (min-width: 1200px) {
       display: none;
     }
 `
