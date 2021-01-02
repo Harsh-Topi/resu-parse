@@ -7,13 +7,21 @@ let mainWindow: Electron.BrowserWindow | null
 
 function createWindow () {
   mainWindow = new BrowserWindow({
-    width: 1100,
-    height: 700,
-    backgroundColor: '#191622',
+    width: 950,
+    height: 660,
+    backgroundColor: '#FFFFFF',
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    //maximizable: false,
+    minWidth: 800,
+    minHeight: 660,
+    //maxHeight: 1000,
+   // maxWidth: 950
+    
   })
+
+  mainWindow.setMenuBarVisibility(false)
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:4000')
