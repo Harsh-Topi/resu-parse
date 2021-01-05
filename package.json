@@ -68,7 +68,9 @@
     "webpack-dev-server": "^3.10.3"
   },
   "dependencies": {
+    "@types/react-pdf": "^5.0.0",
     "autoprefixer": "^10.1.0",
+    "axios": "^0.21.1",
     "bootstrap": "^4.5.3",
     "css-loader": "^5.0.1",
     "postcss-loader": "^4.1.0",
@@ -77,6 +79,7 @@
     "react-bootstrap": "^1.4.0",
     "react-dom": "^16.13.1",
     "react-icons": "^4.1.0",
+    "react-pdf": "^5.1.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "styled-components": "^5.1.1"

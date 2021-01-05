@@ -18,10 +18,12 @@ function createWindow () {
     minHeight: 660,
     //maxHeight: 1000,
    // maxWidth: 950
+
     
   })
 
   mainWindow.setMenuBarVisibility(false)
+  mainWindow.webContents.openDevTools()
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:4000')
