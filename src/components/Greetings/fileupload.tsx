@@ -9,9 +9,13 @@ type FileUploadState = {
   jsonData?: string;
 };
 
-export class FileUpload extends React.Component<{}, FileUploadState> {
-  constructor({}) {
-    super({});
+type FileUploadProps = {
+  onFileUpload : ((response: any) => void)
+}
+
+export class FileUpload extends React.Component<FileUploadProps, FileUploadState> {
+  constructor(props : FileUploadProps ) {
+    super(props);
     this.state = {
       data: '',
       jsonData: '',
@@ -35,11 +39,9 @@ export class FileUpload extends React.Component<{}, FileUploadState> {
         )
         .then(
           (response: any) => {
-            console.log(response.data);
-            this.setState({
-              data: pdfDataString.split(',')[1],
-              jsonData: response.data['body'],
-            });
+            //console.log(response.data);
+        
+            this.props.onFileUpload(response)
           },
           (error: any) => {
             console.log(error);
