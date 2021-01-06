@@ -15,10 +15,12 @@ function createWindow() {
     backgroundColor: '#FFFFFF',
     webPreferences: {
       nodeIntegration: true,
+      webSecurity: false
     },
     //maximizable: false,
     minWidth: 800,
     minHeight: 660,
+    
     //maxHeight: 1000,
     // maxWidth: 950
   });
