@@ -44,7 +44,6 @@ export const PreviousResContainer = styled.div`
 export const ParseContainer = styled.div``;
 
 export const PreviewContainer = styled.div`
-  background-color: orange;
 
   @media (max-width: 1200px) {
     display: none;

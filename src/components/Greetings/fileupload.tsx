@@ -57,10 +57,11 @@ export class FileUpload extends React.Component<FileUploadProps, FileUploadState
       // <NavBarButtons onClick={() => console.log("test")}>
       //     <FiPaperclip>
       //         <input type="file" onChange={(event:any) => this.baseConvert(event.target.files[0])} />
-      //     </FiPaperclip>
+        //     </FiPaperclip>
       // </NavBarButtons>
       <input
         type="file"
+        accept=".pdf .docx"
         onChange={(event: any) => this.baseConvert(event.target.files[0])}
       />
     );
