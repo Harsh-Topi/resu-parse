@@ -16,7 +16,6 @@ import { IconContext } from 'react-icons';
 import { FiSettings, FiPaperclip, FiMenu, FiFileText } from 'react-icons/fi';
 
 import { FileUpload } from './fileupload';
-import { DocView } from './docview';
 
 const infoList = [
   'Name',
@@ -55,6 +54,36 @@ export class Greetings extends React.Component<{}, dataState> {
     var posBuffer = [];
 
     for (var i = 0; i < positionArr.length; i++) {
+      var title = positionArr[i].hasOwnProperty('title')
+        ? positionArr[i].title
+        : '??';
+      var org = positionArr[i].hasOwnProperty('org')
+        ? positionArr[i].org
+        : '??';
+      var startMonth = positionArr[i].hasOwnProperty('start')
+        ? positionArr[i].start.month
+        : '??';
+      var startYear = positionArr[i].hasOwnProperty('start')
+        ? positionArr[i].start.year
+        : '??';
+      var endMonth = positionArr[i].hasOwnProperty('end')
+        ? positionArr[i].end.month
+        : '??';
+      var endYear = positionArr[i].hasOwnProperty('end')
+        ? positionArr[i].end.year
+        : '??';
+      var summary = positionArr[i].hasOwnProperty('summary')
+        ? positionArr[i].summary
+        : '??';
+
+      var endDate = '';
+
+      if (positionArr[i].hasOwnProperty('isCurrent')) {
+        endDate = 'Present';
+      } else {
+        endDate = endMonth + '/' + endYear;
+      }
+
       posBuffer.push(
         <tr>
           <td>{positionArr[i].org}</td>
@@ -64,9 +93,7 @@ export class Greetings extends React.Component<{}, dataState> {
               '/' +
               positionArr[i].start.year +
               ' to ' +
-              positionArr[i].end.month +
-              '/' +
-              positionArr[i].end.year}
+              endDate}
           </td>
           <td>{positionArr[i].summary}</td>
         </tr>
@@ -87,62 +114,120 @@ export class Greetings extends React.Component<{}, dataState> {
     var phones = '';
     var schools = '';
 
-    
     // need to check if all of these fields actually exist before looping through arrays
 
-
-    for (var i = 0; i < response.data.names.length; i++) {
-      names += response.data.names[i];
-    }
-
-    for (var i = 0; i < response.data.emails.length; i++) {
-      emails += response.data.emails[i].value;
-      emails += ', ';
-      if (i == response.data.emails.length - 1) {
-        emails = emails.substring(0, emails.length - 2);
+    if (response.data.hasOwnProperty('names')) {
+      for (var i = 0; i < response.data.names.length; i++) {
+        names += response.data.names[i];
       }
+    } else {
+      names = '??';
     }
 
-    for (var i = 0; i < response.data.links.length; i++) {
-      links += response.data.links[i].url;
-      links += ', ';
-      if (i == response.data.links.length - 1) {
-        links = links.substring(0, links.length - 2);
+    if (response.data.hasOwnProperty('emails')) {
+      for (var i = 0; i < response.data.emails.length; i++) {
+        emails += response.data.emails[i].value;
+        emails += ', ';
+        if (i == response.data.emails.length - 1) {
+          emails = emails.substring(0, emails.length - 2);
+        }
       }
+    } else {
+      emails = '??';
     }
 
-    for (var i = 0; i < response.data.phones.length; i++) {
-      phones += response.data.phones[i].value;
-      phones += ', ';
-      if (i == response.data.phones.length - 1) {
-        phones = phones.substring(0, phones.length - 2);
+    if (response.data.hasOwnProperty('links')) {
+      for (var i = 0; i < response.data.links.length; i++) {
+        links += response.data.links[i].url;
+        links += ', ';
+        if (i == response.data.links.length - 1) {
+          links = links.substring(0, links.length - 2);
+        }
       }
+    } else {
+      links = '??';
     }
 
-    for (var i = 0; i < response.data.schools.length; i++) {
-      schools +=
-        '(' +
-        response.data.schools[i].org +
-        ', ' +
-        response.data.schools[i].degree +
-        ', studying ' +
-        response.data.schools[i].field +
-        ', from  ' +
-        response.data.schools[i].start.month +
-        '/' +
-        response.data.schools[i].start.year +
-        ' to ' +
-        response.data.schools[i].end.month +
-        '/' +
-        response.data.schools[i].end.year +
-        ')';
+    if (response.data.hasOwnProperty('phones')) {
+      for (var i = 0; i < response.data.phones.length; i++) {
+        phones += response.data.phones[i].value;
+        phones += ', ';
+        if (i == response.data.phones.length - 1) {
+          phones = phones.substring(0, phones.length - 2);
+        }
+      }
+    } else {
+      phones = '??';
     }
 
-    this.processPositions(response.data.positions);
+    if (response.data.hasOwnProperty('schools')) {
+      for (var i = 0; i < response.data.schools.length; i++) {
+        var org = response.data.schools[i].hasOwnProperty('org')
+          ? response.data.schools[i].org
+          : '??';
+        var degree = response.data.schools[i].hasOwnProperty('degree')
+          ? response.data.schools[i].degree
+          : '??';
+        var field = response.data.schools[i].hasOwnProperty('field')
+          ? response.data.schools[i].field
+          : '??';
+        var startMonth = response.data.schools[i].hasOwnProperty('start')
+          ? response.data.schools[i].start.month
+          : '??';
+        var startYear = response.data.schools[i].hasOwnProperty('start')
+          ? response.data.schools[i].start.year
+          : '??';
+        var endMonth = response.data.schools[i].hasOwnProperty('end')
+          ? response.data.schools[i].end.month
+          : '??';
+        var endYear = response.data.schools[i].hasOwnProperty('end')
+          ? response.data.schools[i].end.year
+          : '??';
+
+        schools +=
+          '(' +
+          org +
+          ', ' +
+          degree +
+          ', studying ' +
+          field +
+          ', from  ' +
+          startMonth +
+          '/' +
+          startYear +
+          ' to ' +
+          endMonth +
+          '/' +
+          endYear +
+          ')';
+      }
+    } else {
+      schools = '??';
+    }
+
+    if (response.data.hasOwnProperty('positions')) {
+      this.processPositions(response.data.positions);
+    } else {
+      var posBuffer = [];
+
+      posBuffer.push(
+        <tr>
+          <td>No positions found</td>
+        </tr>
+      );
+
+      this.setState({
+        positionBuffer: posBuffer,
+      });
+    }
 
     var temp4Map = [''];
     temp4Map[0] = names;
-    temp4Map[1] = response.data.summary.skills;
+    temp4Map[1] =
+      response.data.hasOwnProperty('summary') &&
+      response.data.summary.hasOwnProperty('skills')
+        ? response.data.summary.skills
+        : '??'; // summary skills
     temp4Map[2] = schools;
     temp4Map[3] = phones;
     temp4Map[4] = emails;
@@ -155,8 +240,12 @@ export class Greetings extends React.Component<{}, dataState> {
       links: links,
       phone: phones,
       school: schools,
-      skills: response.data.summary.skills,
-      summary: response.data.summary.experience,
+      skills: temp4Map[1],
+      summary:
+        response.data.hasOwnProperty('summary') &&
+        response.data.summary.hasOwnProperty('experience')
+          ? response.data.summary.experience
+          : '??',
       dataArr: temp4Map,
     });
   }
@@ -177,9 +266,9 @@ export class Greetings extends React.Component<{}, dataState> {
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <IconContext.Provider value={{ color: 'black', size: '2.3em' }}>
-                  <BigPreviewButton>
+                  {/* <BigPreviewButton>
                     <FiFileText />
-                  </BigPreviewButton>
+                  </BigPreviewButton> */}
                   <FileUpload
                     onFileUpload={this.setDataAfterUpload.bind(this)}
                   />

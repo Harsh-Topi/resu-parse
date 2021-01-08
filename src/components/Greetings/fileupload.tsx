@@ -10,11 +10,14 @@ type FileUploadState = {
 };
 
 type FileUploadProps = {
-  onFileUpload : ((response: any) => void)
-}
+  onFileUpload: (response: any) => void;
+};
 
-export class FileUpload extends React.Component<FileUploadProps, FileUploadState> {
-  constructor(props : FileUploadProps ) {
+export class FileUpload extends React.Component<
+  FileUploadProps,
+  FileUploadState
+> {
+  constructor(props: FileUploadProps) {
     super(props);
     this.state = {
       data: '',
@@ -32,16 +35,16 @@ export class FileUpload extends React.Component<FileUploadProps, FileUploadState
         .post(
           'https://kplymnyqq8.execute-api.ca-central-1.amazonaws.com/default/resume-parse',
           {
-            "body": {
-              "content": pdfDataString
-            }
+            body: {
+              content: pdfDataString,
+            },
           }
         )
         .then(
           (response: any) => {
             //console.log(response.data);
-        
-            this.props.onFileUpload(response)
+
+            this.props.onFileUpload(response);
           },
           (error: any) => {
             console.log(error);
@@ -54,16 +57,18 @@ export class FileUpload extends React.Component<FileUploadProps, FileUploadState
 
   render() {
     return (
-      // <NavBarButtons onClick={() => console.log("test")}>
-      //     <FiPaperclip>
-      //         <input type="file" onChange={(event:any) => this.baseConvert(event.target.files[0])} />
-        //     </FiPaperclip>
-      // </NavBarButtons>
-      <input
-        type="file"
-        accept=".pdf, .docx"
-        onChange={(event: any) => this.baseConvert(event.target.files[0])}
-      />
+      <>
+        <label htmlFor="file-upload" className={'pt-3'} style={{ cursor: 'pointer', display: 'inline-block', padding: '6px 6px 6px 6px' }}>
+          <FiPaperclip />
+        </label>
+        <input
+          style={{ display: 'none' }}
+          id="file-upload"
+          type="file"
+          accept=".pdf"
+          onChange={(event: any) => this.baseConvert(event.target.files[0])}
+        />
+      </>
     );
   }
 }

@@ -10,20 +10,17 @@ let mainWindow: Electron.BrowserWindow | null;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
+    title: "Resu-Parse",
     width: 800,
     height: 660,
-    backgroundColor: '#FFFFFF',
     webPreferences: {
       nodeIntegration: true,
       webSecurity: false,
-      plugins: true
+      plugins: true,
     },
-    //maximizable: false,
     minWidth: 800,
     minHeight: 660,
     maxWidth: 950,
-    //maxHeight: 1000,
-    // maxWidth: 950
   });
 
   mainWindow.setMenuBarVisibility(false);
