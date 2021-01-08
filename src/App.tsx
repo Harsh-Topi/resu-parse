@@ -12,7 +12,6 @@ document.body.appendChild(mainElement);
 const App = () => {
   return (
     <>
-      <title>Resu-Parse</title>
       <GlobalStyle />
       <Greetings />
     </>

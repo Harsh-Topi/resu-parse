@@ -11,6 +11,7 @@ type FileUploadState = {
 
 type FileUploadProps = {
   onFileUpload: (response: any) => void;
+  errorMessage: () => void;
 };
 
 export class FileUpload extends React.Component<
@@ -26,39 +27,49 @@ export class FileUpload extends React.Component<
   }
 
   baseConvert(targetFile: File) {
-    var reader = new FileReader();
-    reader.readAsDataURL(targetFile);
-    reader.onload = () => {
-      const pdfDataString = (reader.result as string).split(',')[1];
-      // call api, get json
-      axios
-        .post(
-          'https://kplymnyqq8.execute-api.ca-central-1.amazonaws.com/default/resume-parse',
-          {
-            body: {
-              content: pdfDataString,
+    if (targetFile.type === 'application/pdf') {
+      var reader = new FileReader();
+      reader.readAsDataURL(targetFile);
+      reader.onload = () => {
+        const pdfDataString = (reader.result as string).split(',')[1];
+        // call api, get json
+        axios
+          .post(
+            'https://kplymnyqq8.execute-api.ca-central-1.amazonaws.com/default/resume-parse',
+            {
+              body: {
+                content: pdfDataString,
+              },
+            }
+          )
+          .then(
+            (response: any) => {
+              //console.log(response.data);
+
+              this.props.onFileUpload(response);
             },
-          }
-        )
-        .then(
-          (response: any) => {
-            //console.log(response.data);
-
-            this.props.onFileUpload(response);
-          },
-          (error: any) => {
-            console.log(error);
-          }
-        );
-
-      //   this.setState({ data: pdfDataString.split(',')[1] });
-    };
+            (error: any) => {
+              this.props.errorMessage();
+            }
+          );
+      };
+    } else {
+      this.props.errorMessage();
+    }
   }
 
   render() {
     return (
       <>
-        <label htmlFor="file-upload" className={'pt-3'} style={{ cursor: 'pointer', display: 'inline-block', padding: '6px 6px 6px 6px' }}>
+        <label
+          htmlFor="file-upload"
+          className={'pt-3'}
+          style={{
+            cursor: 'pointer',
+            display: 'inline-block',
+            padding: '6px 6px 6px 6px',
+          }}
+        >
           <FiPaperclip />
         </label>
         <input

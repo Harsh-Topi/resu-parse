@@ -23,7 +23,7 @@ function createWindow() {
     maxWidth: 950,
   });
 
-  mainWindow.setMenuBarVisibility(false);
+  //mainWindow.setMenuBarVisibility(false);
   mainWindow.webContents.openDevTools();
 
   if (process.env.NODE_ENV === 'development') {

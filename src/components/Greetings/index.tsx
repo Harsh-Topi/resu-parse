@@ -17,6 +17,9 @@ import { FiSettings, FiPaperclip, FiMenu, FiFileText } from 'react-icons/fi';
 
 import { FileUpload } from './fileupload';
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const infoList = [
   'Name',
   'Skills',
@@ -48,6 +51,18 @@ export class Greetings extends React.Component<{}, dataState> {
       jsonData: '',
       dataArr: [],
     };
+  }
+
+  errorMessage() {
+    toast('Please upload a PDF file.', {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      });
   }
 
   processPositions(positionArr: any) {
@@ -253,6 +268,7 @@ export class Greetings extends React.Component<{}, dataState> {
   render() {
     return (
       <Container>
+        <ToastContainer position="top-center" limit={3}/>
         <GridContainer>
           <ParseContainer>
             <Navbar className={'py-3'} style={{ boxShadow: '0 6px 4px -4px' }}>
@@ -266,11 +282,9 @@ export class Greetings extends React.Component<{}, dataState> {
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
                 <IconContext.Provider value={{ color: 'black', size: '2.3em' }}>
-                  {/* <BigPreviewButton>
-                    <FiFileText />
-                  </BigPreviewButton> */}
                   <FileUpload
                     onFileUpload={this.setDataAfterUpload.bind(this)}
+                    errorMessage = {this.errorMessage.bind(this)}
                   />
                   <NavBarButtons style={{ marginRight: '20px' }}>
                     <FiSettings />

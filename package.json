@@ -86,6 +86,7 @@
     "react-pdf": "^5.1.0",
     "react-pdf-js-infinite": "^1.2.0",
     "react-read-pdf": "^2.0.9",
+    "react-toastify": "^6.2.0",
     "sass-loader": "^10.1.0",
     "style-loader": "^2.0.0",
     "styled-components": "^5.1.1"

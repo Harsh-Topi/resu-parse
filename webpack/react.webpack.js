@@ -41,5 +41,5 @@ module.exports = {
     filename: 'js/[name].js',
     publicPath: './',
   },
-  plugins: [new HtmlWebpackPlugin()],
+  plugins: [new HtmlWebpackPlugin({ title: 'Resu-parse' })],
 };
