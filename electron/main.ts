@@ -10,17 +10,18 @@ let mainWindow: Electron.BrowserWindow | null;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 950,
+    width: 800,
     height: 660,
     backgroundColor: '#FFFFFF',
     webPreferences: {
       nodeIntegration: true,
-      webSecurity: false
+      webSecurity: false,
+      plugins: true
     },
     //maximizable: false,
     minWidth: 800,
     minHeight: 660,
-    
+    maxWidth: 950,
     //maxHeight: 1000,
     // maxWidth: 950
   });

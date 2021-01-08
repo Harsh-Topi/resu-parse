@@ -16,8 +16,7 @@ import { IconContext } from 'react-icons';
 import { FiSettings, FiPaperclip, FiMenu, FiFileText } from 'react-icons/fi';
 
 import { FileUpload } from './fileupload';
-
-import { PdfPreview } from './pdfpreview'
+import { DocView } from './docview';
 
 const infoList = [
   'Name',
@@ -69,14 +68,14 @@ export class Greetings extends React.Component<{}, dataState> {
               '/' +
               positionArr[i].end.year}
           </td>
-            <td>{positionArr[i].summary}</td>
+          <td>{positionArr[i].summary}</td>
         </tr>
       );
     }
 
     this.setState({
-      positionBuffer: posBuffer
-    })
+      positionBuffer: posBuffer,
+    });
   }
 
   setDataAfterUpload(response: any) {
@@ -87,6 +86,10 @@ export class Greetings extends React.Component<{}, dataState> {
     var links = '';
     var phones = '';
     var schools = '';
+
+    
+    // need to check if all of these fields actually exist before looping through arrays
+
 
     for (var i = 0; i < response.data.names.length; i++) {
       names += response.data.names[i];
@@ -135,7 +138,7 @@ export class Greetings extends React.Component<{}, dataState> {
         ')';
     }
 
-    this.processPositions(response.data.positions)
+    this.processPositions(response.data.positions);
 
     var temp4Map = [''];
     temp4Map[0] = names;
@@ -162,7 +165,6 @@ export class Greetings extends React.Component<{}, dataState> {
     return (
       <Container>
         <GridContainer>
-          <PreviousResContainer />
           <ParseContainer>
             <Navbar className={'py-3'} style={{ boxShadow: '0 6px 4px -4px' }}>
               <Navbar.Brand href="#home">
@@ -225,14 +227,9 @@ export class Greetings extends React.Component<{}, dataState> {
                   <th>Description</th>
                 </tr>
               </thead>
-              <tbody>
-                {this.state.positionBuffer}
-              </tbody>
+              <tbody>{this.state.positionBuffer}</tbody>
             </Table>
           </ParseContainer>
-          <PreviewContainer>
-            <PdfPreview/>
-          </PreviewContainer>
         </GridContainer>
       </Container>
     );

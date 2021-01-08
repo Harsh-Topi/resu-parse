@@ -21,16 +21,9 @@ export const Text = styled.p`
 
 export const GridContainer = styled.div`
   display: grid;
-  grid-template-columns: 245px auto 30%;
+  grid-template-columns: auto;
   min-height: 100vh;
 
-  @media (max-width: 1200px) {
-    grid-template-columns: 245px auto;
-  }
-
-  @media (max-width: 800px) {
-    grid-template-columns: auto;
-  }
 `;
 
 export const PreviousResContainer = styled.div`
@@ -73,10 +66,6 @@ export const PreviewButton = styled.button`
 
   :focus {
     outline: none;
-  }
-
-  @media (min-width: 800px) {
-    display: none;
   }
 `;
 
