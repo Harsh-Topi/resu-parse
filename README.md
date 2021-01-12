@@ -1,5 +1,4 @@
-## Electron + TypeScript + React
-Boilerplate for a project using Electron, React and Typescript
+Resu-Parse
 
 ## Installation
 
