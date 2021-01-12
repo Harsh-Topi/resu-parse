@@ -113,16 +113,16 @@ export class Greetings extends React.Component<{}, dataState> {
 
       posBuffer.push(
         <tr>
-          <td>{positionArr[i].org}</td>
-          <td>{positionArr[i].title}</td>
+          <td>{org}</td>
+          <td>{title}</td>
           <td>
-            {positionArr[i].start.month +
+            {startMonth +
               '/' +
-              positionArr[i].start.year +
+              startYear +
               ' to ' +
               endDate}
           </td>
-          <td>{positionArr[i].summary}</td>
+          <td>{summary}</td>
         </tr>
       );
     }
