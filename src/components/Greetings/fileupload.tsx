@@ -11,7 +11,7 @@ type FileUploadState = {
 
 type FileUploadProps = {
   onFileUpload: (response: any) => void;
-  errorMessage: () => void;
+  errorMessage: (errorType: number) => void;
 };
 
 export class FileUpload extends React.Component<
@@ -49,12 +49,14 @@ export class FileUpload extends React.Component<
               this.props.onFileUpload(response);
             },
             (error: any) => {
-              this.props.errorMessage();
+              //console.log("api error")
+              this.props.errorMessage(2);
             }
           );
       };
     } else {
-      this.props.errorMessage();
+      //console.log("file error")
+      this.props.errorMessage(1);
     }
   }
 

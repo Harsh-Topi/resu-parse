@@ -10,6 +10,7 @@ mainElement.setAttribute('id', 'root');
 document.body.appendChild(mainElement);
 
 const App = () => {
+  
   return (
     <>
       <GlobalStyle />

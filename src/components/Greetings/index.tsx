@@ -53,16 +53,28 @@ export class Greetings extends React.Component<{}, dataState> {
     };
   }
 
-  errorMessage() {
-    toast('Please upload a PDF file.', {
-      position: "top-center",
-      autoClose: 4000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: false,
-      progress: undefined,
+  errorMessage(errorType: number) {
+    if (errorType == 1) {
+      toast('Please upload a PDF file.', {
+        position: 'top-center',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
       });
+    } else {
+      toast('Could not parse file. Bad response from server.', {
+        position: 'top-center',
+        autoClose: 4000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: false,
+        progress: undefined,
+      });
+    }
   }
 
   processPositions(positionArr: any) {
@@ -268,7 +280,7 @@ export class Greetings extends React.Component<{}, dataState> {
   render() {
     return (
       <Container>
-        <ToastContainer position="top-center" limit={3}/>
+        <ToastContainer position="top-center" limit={3} />
         <GridContainer>
           <ParseContainer>
             <Navbar className={'py-3'} style={{ boxShadow: '0 6px 4px -4px' }}>
@@ -284,7 +296,7 @@ export class Greetings extends React.Component<{}, dataState> {
                 <IconContext.Provider value={{ color: 'black', size: '2.3em' }}>
                   <FileUpload
                     onFileUpload={this.setDataAfterUpload.bind(this)}
-                    errorMessage = {this.errorMessage.bind(this)}
+                    errorMessage={this.errorMessage.bind(this)}
                   />
                   {/* <NavBarButtons style={{ marginRight: '20px' }}>
                     <FiSettings />
