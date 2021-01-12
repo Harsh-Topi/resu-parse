@@ -23,8 +23,8 @@ function createWindow() {
     maxWidth: 950,
   });
 
-  //mainWindow.setMenuBarVisibility(false);
-  mainWindow.webContents.openDevTools();
+  mainWindow.setMenuBarVisibility(false);
+  //mainWindow.webContents.openDevTools();
 
   if (process.env.NODE_ENV === 'development') {
     mainWindow.loadURL('http://localhost:4000');

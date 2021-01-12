@@ -273,11 +273,11 @@ export class Greetings extends React.Component<{}, dataState> {
           <ParseContainer>
             <Navbar className={'py-3'} style={{ boxShadow: '0 6px 4px -4px' }}>
               <Navbar.Brand href="#home">
-                <IconContext.Provider value={{ color: 'black', size: '2.0em' }}>
+                {/* <IconContext.Provider value={{ color: 'black', size: '2.0em' }}>
                   <PreviewButton style={{ marginLeft: '10px' }}>
                     <FiMenu />
                   </PreviewButton>
-                </IconContext.Provider>
+                </IconContext.Provider> */}
               </Navbar.Brand>
               <Navbar.Toggle />
               <Navbar.Collapse className="justify-content-end">
@@ -286,9 +286,9 @@ export class Greetings extends React.Component<{}, dataState> {
                     onFileUpload={this.setDataAfterUpload.bind(this)}
                     errorMessage = {this.errorMessage.bind(this)}
                   />
-                  <NavBarButtons style={{ marginRight: '20px' }}>
+                  {/* <NavBarButtons style={{ marginRight: '20px' }}>
                     <FiSettings />
-                  </NavBarButtons>
+                  </NavBarButtons> */}
                 </IconContext.Provider>
               </Navbar.Collapse>
             </Navbar>
