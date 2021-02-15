@@ -1,3 +1,5 @@
+#### LEVER HAS DISBALED THEIR API. THIS APPLICATION IS NO LONG FUNCTIONAL.
+
 ### Resu-Parse
 
 ## Installation
